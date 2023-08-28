@@ -5,7 +5,7 @@ const collection = require('../model/mongodb')
 
 router.post("/admin", async (req,res) => {
     let searchitem = req.body.search;
-    const data = await collection.find({username: {$regex: '^' + searchitem}})
+    const data = await collection.find({username: {$regex: '^' + searchitem,$options:'i'}})
     console.log(data); 
     if(data == ""){
       res.render("dashboard",{message : "User with this username doesnot exist",data : data,name:req.session.name})
